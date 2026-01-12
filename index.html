@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Infinite Journey | Visionary Portfolio</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABEL WARNA & TEMA MERAH ELEGAN --- */
+        :root {
+            /* Warna Utama: Merah Modern (Vivid Red) */
+            --primary: #ff2a2a;       
+            /* Warna Aksen: Merah Gelap (Blood Red) untuk kedalaman */
+            --accent: #8a0000;
+            /* Background: Hampir hitam pekat dengan sentuhan merah sangat tipis */
+            --bg: #050202;
+            /* Card Background: Hitam transparan dengan blur */
+            --card-bg: rgba(20, 10, 10, 0.65);
+            
+            --text: #ffffff;
+            --text-mute: #b0b0b0;
+            
+            /* Tetap menjaga identitas warna brand sosmed tapi lebih soft */
+            --ig-color: #E1306C;
+            --tt-color: #00f2ea;
+            --yt-color: #ff0000;
+        }
+
+        /* Scrollbar Mewah Merah */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, var(--primary), var(--accent)); 
+            border-radius: 10px; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a { text-decoration: none; color: inherit; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            padding-bottom: 50px;
+            /* Anti-aliasing untuk teks lebih tajam di HP */
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        /* Latar Belakang Gradient Merah Halus */
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 15% 15%, rgba(255, 42, 42, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(138, 0, 0, 0.1) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+
+        /* HEADER */
+        header { text-align: center; margin-bottom: 70px; }
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem); /* Ukuran font adaptif */
+            font-weight: 800;
+            letter-spacing: -1px;
+            /* Gradient Teks Merah ke Putih */
+            background: linear-gradient(to right, #fff 20%, var(--primary) 50%, #fff 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 6s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 42, 42, 0.3);
+        }
+        @keyframes shine { 
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; } 
+        }
+
+        .section-title {
+            text-align: left;
+            margin: 70px 0 30px 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .section-title::after { 
+            content: ""; height: 2px; flex-grow: 1; 
+            background: linear-gradient(to right, var(--primary), transparent); 
+            border-radius: 2px;
+        }
+
+        /* BENTO GRID SYSTEM */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        /* KARTU (CARD) - Design Glassmorphism Modern */
+        .card {
+            grid-column: span 12; /* Default Mobile */
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 42, 42, 0.1); /* Border merah tipis */
+            border-radius: 24px;
+            padding: 25px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            /* Transisi Super Halus */
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Desktop Layout */
+        @media (min-width: 768px) {
+            .col-span-1 { grid-column: span 4; }
+            .col-span-2 { grid-column: span 8; }
+            .col-span-3 { grid-column: span 12; }
+            .row-span-2 { grid-row: span 2; }
+        }
+
+        /* Efek Hover Mewah */
+        .card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(255, 42, 42, 0.15); /* Glow merah */
+            background: rgba(30, 10, 10, 0.8);
+        }
+
+        .card h3 {
+            font-size: 1.1rem; margin-bottom: 8px; font-weight: 700; color: #fff;
+        }
+
+        /* GAMBAR DALAM KARTU */
+        .img-box {
+            width: 100%; 
+            aspect-ratio: 16/9; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .row-span-2 .img-box { aspect-ratio: 1/1; } /* Kotak untuk kartu vertikal */
+
+        .img-box img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            filter: brightness(0.9);
+        }
+        .card:hover .img-box img { 
+            transform: scale(1.08); 
+            filter: brightness(1.1);
+        }
+
+        /* GAME GRID */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 Kolom di HP */
+            gap: 15px;
+            margin-top: 20px;
+        }
+        @media (min-width: 768px) {
+            .game-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 42, 42, 0.15);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: rgba(255, 42, 42, 0.05);
+        }
+        .game-img { width: 100%; aspect-ratio: 1; border-radius: 15px; object-fit: cover; margin-bottom: 12px; }
+
+        /* GALLERY */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .gallery-container { grid-template-columns: 1fr 1fr; }
+        }
+        .gallery-item {
+            height: 350px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover { transform: scale(1.02); border-color: var(--primary); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* CLOSING BOX */
+        .closing-box {
+            margin-top: 100px;
+            padding: 60px 20px;
+            background: radial-gradient(circle at center, rgba(255, 42, 42, 0.05) 0%, transparent 70%);
+            text-align: center;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 42, 42, 0.1);
+        }
+        .closing-text { 
+            font-size: 1.1rem; 
+            color: var(--text-mute); 
+            line-height: 1.8; 
+            font-style: italic; 
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* SOCIAL MEDIA BUTTONS */
+        .social-card { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .social-btn {
+            display: inline-block; width: 100%; padding: 10px; border-radius: 50px; 
+            font-weight: 700; margin-top: 15px; font-size: 0.9rem;
+            background: rgba(255,255,255,0.03); 
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+        .card:hover .social-btn { background: var(--primary); color: #000; border-color: var(--primary); }
+
+        /* OVERLAY ZOOM */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); display: none; z-index: 9999;
+            justify-content: center; align-items: center; opacity: 0; transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        .overlay img { 
+            max-width: 90%; max-height: 85%; 
+            border-radius: 12px; 
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 50px rgba(255, 42, 42, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient"></div>
+
+    <div class="container">
+        <header data-aos="zoom-out" data-aos-duration="1200">
+            <h1>Welcome to my website</h1>
+            <p style="color: var(--text-mute); letter-spacing: 3px; font-size: 0.9rem; margin-top: 15px; text-transform: uppercase;">Muhammad Nayaka Alfino</p>
+        </header>
+
+        <div class="bento-grid">
+            <div class="card col-span-2" data-aos="fade-up" data-aos-delay="100" onclick="zoomImage(this)">
+                <h3><i class="fas fa-fingerprint" style="color: var(--primary)"></i> Profile Identity</h3>
+                <div style="display: flex; gap: 20px; align-items: center; margin-top: 15px; flex-wrap: wrap;">
+                    <div class="img-box" style="width: 90px; height: 90px; border-radius: 50%; margin: 0; border: 2px solid var(--primary); box-shadow: 0 0 15px rgba(255,42,42,0.3);">
+                        <img src="nayaka.jpg" alt="Me">
+                    </div>
+                    <p style="flex: 1; min-width: 200px; font-size: 0.95rem; line-height: 1.6; color: #ddd;">
+                        Muhammad Nayaka Alfino <span style="color: var(--primary); font-weight: bold;">(10-01-2011)</span>,<br>
+                        LubukLinggau, Sumatra Selatan
+                    </p>
+                </div>
+            </div>
+
+            <div class="card col-span-1 row-span-2" data-aos="fade-up" data-aos-delay="200" onclick="zoomImage(this)">
+                <div class="img-box"><img src="its.jpg" alt="Edu"></div>
+                <h3 style="color: var(--primary);">Tujuan Kuliah</h3>
+                <p style="font-size: 0.9rem; color: var(--text-mute); line-height: 1.5;">Saya ingin berkuliah di Institut Teknologi Sepuluh November.</p>
+            </div>
+
+            <div class="card col-span-1" data-aos="fade-up" data-aos-delay="300" onclick="zoomImage(this)">
+                <h3 style="color: #fff;">Cita-Cita</h3>
+                <p style="font-size: 0.9rem; color: var(--text-mute);">Saya ingin bekerja pada perusahaan besar dengan menjadi seorang <span style="color: var(--primary);">Programmer Handal</span>.</p>
+            </div>
+
+            <div class="card col-span-1" data-aos="fade-up" data-aos-delay="400" onclick="zoomImage(this)">
+                <div class="img-box" style="margin: 0; aspect-ratio: 16/9;"><img src="images (1).png" alt="Vision"></div>
+            </div>
+
+            <div class="section-title" data-aos="fade-right">The Inspiration</div>
+            
+            <div class="card col-span-3" style="background: linear-gradient(135deg, rgba(138,0,0,0.2), transparent); border-color: rgba(255,42,42,0.3);" data-aos="zoom-in-up" onclick="zoomImage(this)">
+                <div style="display: flex; gap: 25px; align-items: center; flex-wrap: wrap;">
+                    <div class="img-box" style="width: 140px; height: 140px; margin: 0; border: 2px solid var(--primary); border-radius: 50%;">
+                        <img src="images (2).png" alt="Love">
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 15px;"><i class="fas fa-heart"></i> Tentang Diriku</h3>
+                        <p style="font-style: italic; font-size: 1rem; line-height: 1.7; color: #eee;">
+                            "Saya anak yang sangat berbeda dari semua anak yang umurnya sama denganku. Disaat semua orang sedang bermain, berpacaran, aku disini tetap di kamarku dengan PC dan 2 layar yang menyala, menyinari kamarku dengan ribuan baris code yang tidak bisa semua orang ketahui."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title" data-aos="fade-right">Sosial Media</div>
+            <a href="#" class="card col-span-1 social-card" data-aos="fade-up" data-aos-delay="0">
+                <i class="fab fa-instagram" style="font-size: 2.2rem; color: var(--ig-color);"></i>
+                <div class="social-btn">Instagram</div>
+            </a>
+            <a href="#" class="card col-span-1 social-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fab fa-tiktok" style="font-size: 2.2rem; color: var(--tt-color);"></i>
+                <div class="social-btn">TikTok</div>
+            </a>
+            <a href="#" class="card col-span-1 social-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fab fa-youtube" style="font-size: 2.2rem; color: var(--yt-color);"></i>
+                <div class="social-btn">YouTube</div>
+            </a>
+        </div>
+
+        <div class="section-title" data-aos="fade-right">Profile - Social Media</div>
+        <div class="gallery-container">
+            <div class="gallery-item" data-aos="fade-up" onclick="zoomImage(this)">
+                <img src="Screenshot 2026-01-12 141214.png" alt="M1">
+                <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.8); padding: 8px 18px; border-radius: 50px; border: 1px solid var(--primary); font-size: 0.8rem; color: #fff;">
+                    <i class="fab fa-tiktok"></i> TikTok
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100" onclick="zoomImage(this)">
+                <img src="akun ig (1).png" alt="M2">
+                <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.8); padding: 8px 18px; border-radius: 50px; border: 1px solid var(--primary); font-size: 0.8rem; color: #fff;">
+                    <i class="fab fa-instagram"></i> Instagram
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title" data-aos="fade-right">Favorit Games</div>
+        <div class="game-grid">
+            <div class="game-card" data-aos="zoom-in" data-aos-delay="0"><img src="valorant.jpg" class="game-img"><p style="font-weight: bold;">VALORANT</p></div>
+            <div class="game-card" data-aos="zoom-in" data-aos-delay="100"><img src="dyinglight.jpg" class="game-img"><p style="font-weight: bold;">DyingLight 2</p></div>
+            <div class="game-card" data-aos="zoom-in" data-aos-delay="200"><img src="fivem.jpg" class="game-img"><p style="font-weight: bold;">Fivem</p></div>
+            <div class="game-card" data-aos="zoom-in" data-aos-delay="300"><img src="motogp (1).jpg" class="game-img"><p style="font-weight: bold;">MotoGp</p></div>
+        </div>
+
+        <section class="closing-box" data-aos="fade-up" data-aos-offset="100">
+            <h2 style="margin-bottom: 25px; color: var(--primary); letter-spacing: 4px; text-transform: uppercase; font-size: 1.5rem;">For My Future</h2>
+            <div class="closing-text">
+                <p>Rasa kesepian ini akan kubalas pada waktunya, dan jika ada seorang wanita yang menemaniku dari saat ini, aku berjanji akan memberikan hal terbaik jika aku sukses.</p>
+                <h3 style="color: var(--primary); margin-top: 40px; font-weight: 800; font-size: 1.2rem; letter-spacing: 2px;">- ONE DAY -</h3>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 80px; opacity: 0.5; font-size: 0.8rem; padding-bottom: 20px;">
+            <p style="letter-spacing: 1px;">Designed for Excellence &copy; 2026</p>
+        </footer>
+    </div>
+
+    <div class="overlay" id="zoomOverlay" onclick="closeZoom()">
+        <img id="zoomedImg" src="">
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Konfigurasi AOS untuk animasi yang lebih smooth
+        AOS.init({ 
+            duration: 1000,     // Durasi animasi 1 detik
+            easing: 'ease-out-cubic', // Jenis animasi lebih smooth (cepat di awal, pelan di akhir)
+            once: false,        // Animasi berulang saat di-scroll naik turun
+            mirror: true,
+            offset: 120,        // Jarak trigger animasi dari bawah layar
+        });
+
+        const overlay = document.getElementById('zoomOverlay');
+        const zoomedImg = document.getElementById('zoomedImg');
+
+        function zoomImage(element) {
+            const img = element.querySelector('img');
+            if (img) {
+                zoomedImg.src = img.src;
+                overlay.style.display = 'flex';
+                // Sedikit delay agar transisi opacity bekerja
+                setTimeout(() => { 
+                    overlay.style.opacity = '1'; 
+                }, 10);
+            }
+        }
+
+        function closeZoom() {
+            overlay.style.opacity = '0';
+            setTimeout(() => { 
+                overlay.style.display = 'none'; 
+            }, 400); // Sesuaikan dengan durasi transition CSS
+        }
+    </script>
+</body>
+</html>
